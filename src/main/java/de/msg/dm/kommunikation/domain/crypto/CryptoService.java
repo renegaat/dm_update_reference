@@ -11,17 +11,14 @@ import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 
 @ProxyGen
-@VertxGen
 public interface CryptoService {
 
     @Fluent
     CryptoService getRandomNumber(Authentification authentification, Handler<AsyncResult<JsonObject>> resultHandler);
     
+    
     static CryptoService create(Handler<AsyncResult<CryptoService>> handler) {
-        
-        return new CryptoServiceImpl(cryptoServiceAsyncResult -> {
-                cryptoServiceAsyncResult.result();
-        });
+        return new CryptoServiceImpl(handler);
     }
     
     static CryptoService createProxy(Vertx vertx, String adress) {

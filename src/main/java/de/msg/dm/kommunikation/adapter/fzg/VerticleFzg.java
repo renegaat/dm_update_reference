@@ -10,6 +10,7 @@ import io.vertx.core.logging.LoggerFactory;
 
 public class VerticleFzg extends AbstractVerticle {
 
+    public static final int PULSE = 2000;
     CryptoService cryptoService;
 
     Logger logger = LoggerFactory.getLogger(VerticleFzg.class);
@@ -18,7 +19,7 @@ public class VerticleFzg extends AbstractVerticle {
     public void start(Future<Void> startFuture) throws Exception {
         
 
-        vertx.setPeriodic(2000, aLong -> {
+        vertx.setPeriodic(PULSE, aLong -> {
             useCryptoService();
         });
         startFuture.complete();
@@ -41,7 +42,6 @@ public class VerticleFzg extends AbstractVerticle {
                     }
                 }
         );
-
     }
 
     @Override
