@@ -24,6 +24,4 @@ public class CryptoServiceImpl implements CryptoService {
         resultHandler.handle(Future.succeededFuture(result));
         return this;
     }
-
-    
 }

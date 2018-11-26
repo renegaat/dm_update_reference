@@ -43,7 +43,6 @@ public class VerticleFzg extends AbstractVerticle {
                 }
         );
     }
-
     
     @Override
     public void stop(Future<Void> stopFuture) throws Exception {
