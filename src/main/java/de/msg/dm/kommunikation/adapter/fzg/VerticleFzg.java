@@ -11,14 +11,16 @@ import io.vertx.core.logging.LoggerFactory;
 public class VerticleFzg extends AbstractVerticle {
 
     public static final int PULSE = 2000;
-    CryptoService cryptoService;
-
-    Logger logger = LoggerFactory.getLogger(VerticleFzg.class);
+    
+    private CryptoService cryptoService;
+    
+    private final Logger logger = LoggerFactory.getLogger(VerticleFzg.class);
 
     @Override
     public void start(Future<Void> startFuture) throws Exception {
-        
 
+        cryptoService = CryptoService.createProxy(vertx, Services.CRYPTOSERVICE.toString());
+        
         vertx.setPeriodic(PULSE, aLong -> {
             useCryptoService();
         });
@@ -27,8 +29,6 @@ public class VerticleFzg extends AbstractVerticle {
 
     private void useCryptoService() {
 
-        cryptoService = CryptoService.createProxy(vertx, Services.CRYPTOSERVICE.toString());
-        
         Authentification authentification = new Authentification();
         authentification.setEhkId(123L);
         authentification.setKeyId("keyId");
@@ -44,6 +44,7 @@ public class VerticleFzg extends AbstractVerticle {
         );
     }
 
+    
     @Override
     public void stop(Future<Void> stopFuture) throws Exception {
         stopFuture.complete();
