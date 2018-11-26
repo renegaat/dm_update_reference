@@ -10,8 +10,10 @@ import io.vertx.core.logging.LoggerFactory;
 
 public class VerticleFzg extends AbstractVerticle {
 
-    public static final int PULSE = 2000;
-    
+    public static final int PULSELONG = 2000;
+
+    public static final int PULSESHORT = 500;
+
     private CryptoService cryptoService;
     
     private final Logger logger = LoggerFactory.getLogger(VerticleFzg.class);
@@ -21,13 +23,19 @@ public class VerticleFzg extends AbstractVerticle {
 
         cryptoService = CryptoService.createProxy(vertx, Services.CRYPTOSERVICE.toString());
         
-        vertx.setPeriodic(PULSE, aLong -> {
-            useCryptoService();
+        vertx.setPeriodic(PULSELONG, aLong -> {
+            useCryptoServiceLong();
         });
+
+
+        vertx.setPeriodic(PULSESHORT, aLong -> {
+            useCryptoServiceShort();
+        });
+        
         startFuture.complete();
     }
 
-    private void useCryptoService() {
+    private void useCryptoServiceLong() {
 
         Authentification authentification = new Authentification();
         authentification.setEhkId(123L);
@@ -44,6 +52,25 @@ public class VerticleFzg extends AbstractVerticle {
         );
     }
     
+
+    private void useCryptoServiceShort() {
+
+        Authentification authentification = new Authentification();
+        authentification.setEhkId(123L);
+        authentification.setKeyId("keyId");
+        
+        cryptoService.getSecondRandomNumber(authentification, jsonObjectAsyncResult -> {
+
+                    if (jsonObjectAsyncResult.succeeded()) {
+                        logger.info(jsonObjectAsyncResult.result().toString());
+                    } else {
+                        logger.info(jsonObjectAsyncResult.cause());
+                    }
+                }
+        );
+    }
+
+
     @Override
     public void stop(Future<Void> stopFuture) throws Exception {
         stopFuture.complete();

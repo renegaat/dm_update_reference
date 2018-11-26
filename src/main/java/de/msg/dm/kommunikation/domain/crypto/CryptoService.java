@@ -15,7 +15,10 @@ public interface CryptoService {
 
     @Fluent
     CryptoService getRandomNumber(Authentification authentification, Handler<AsyncResult<JsonObject>> resultHandler);
-    
+
+    @Fluent
+    CryptoService getSecondRandomNumber(Authentification authentification, Handler<AsyncResult<JsonObject>> resultHandler);
+
     
     static CryptoService create(Handler<AsyncResult<CryptoService>> handler) {
         return new CryptoServiceImpl(handler);

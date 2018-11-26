@@ -64,7 +64,6 @@ public class KommunikationsService {
                     } else {
                         log.error("Crypto Service error : ", cryptoServiceAsyncResult.cause());
                         future.fail(cryptoServiceAsyncResult.cause());
-
                     }
                 }
         );
