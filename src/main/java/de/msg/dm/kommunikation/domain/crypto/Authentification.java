@@ -9,18 +9,26 @@ import lombok.Data;
 public class Authentification {
     private long ehkId;
     private String keyId;
-    private JsonObject jsonObject;
-    
+
     public Authentification() {
     }
-    
+
     public Authentification(JsonObject jsonObject) {
-        this.jsonObject = jsonObject;
+        ehkId = jsonObject.getLong("ehkId");
+        keyId = jsonObject.getString("keyId");
     }
-    
+
+
     public JsonObject toJson() {
-        JsonObject  jsonObject = JsonObject.mapFrom(this);
-        return jsonObject;
+
+        JsonObject result = new JsonObject();
+
+        result.put("ehkId", this.getEhkId());
+
+        if (this.getKeyId() != null) {
+            result.put("keyId", this.getKeyId());
+        }
+        return result;
     }
 
     public long getEhkId() {

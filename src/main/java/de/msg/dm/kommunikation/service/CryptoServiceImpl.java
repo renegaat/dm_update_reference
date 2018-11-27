@@ -20,15 +20,17 @@ public class CryptoServiceImpl implements CryptoService {
     @Override
     public CryptoService getRandomNumber(Authentification authentification, Handler<AsyncResult<JsonObject>> resultHandler) {
         JsonObject result = new JsonObject();
-        result.put("randomNumber", "4711");
+        result.put("ehkId", authentification.getEhkId());
+        result.put("keyId", authentification.getKeyId());
         resultHandler.handle(Future.succeededFuture(result));
         return this;
     }
-    
+
     @Override
     public CryptoService getSecondRandomNumber(Authentification authentification, Handler<AsyncResult<JsonObject>> resultHandler) {
         JsonObject result = new JsonObject();
-        result.put("randomNumber", "4821");
+        result.put("ehkId", authentification.getEhkId());
+        result.put("keyId", authentification.getKeyId());
         resultHandler.handle(Future.succeededFuture(result));
         return this;
     }

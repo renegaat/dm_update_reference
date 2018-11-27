@@ -39,7 +39,7 @@ public class VerticleFzg extends AbstractVerticle {
 
         Authentification authentification = new Authentification();
         authentification.setEhkId(123L);
-        authentification.setKeyId("keyId");
+        authentification.setKeyId("keyId 1");
 
         cryptoService.getRandomNumber(authentification, jsonObjectAsyncResult -> {
 
@@ -56,8 +56,8 @@ public class VerticleFzg extends AbstractVerticle {
     private void useCryptoServiceShort() {
 
         Authentification authentification = new Authentification();
-        authentification.setEhkId(123L);
-        authentification.setKeyId("keyId");
+        authentification.setEhkId(321L);
+        authentification.setKeyId("keyId 2");
         
         cryptoService.getSecondRandomNumber(authentification, jsonObjectAsyncResult -> {
 
