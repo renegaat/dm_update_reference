@@ -22,7 +22,7 @@ public class VerticleFzg extends AbstractVerticle {
     public void start(Future<Void> startFuture) throws Exception {
 
         cryptoService = CryptoService.createProxy(vertx, Services.CRYPTOSERVICE.toString());
-        
+
         vertx.setPeriodic(PULSELONG, aLong -> {
             useCryptoServiceLong();
         });
@@ -31,7 +31,7 @@ public class VerticleFzg extends AbstractVerticle {
         vertx.setPeriodic(PULSESHORT, aLong -> {
             useCryptoServiceShort();
         });
-        
+
         startFuture.complete();
     }
 

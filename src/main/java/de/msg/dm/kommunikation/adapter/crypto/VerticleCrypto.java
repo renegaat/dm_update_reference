@@ -8,6 +8,10 @@ public class VerticleCrypto extends AbstractVerticle {
     @Override
     public void start(Future<Void> startFuture) {
         
+        
+        
+        
+        
         startFuture.complete();
     }
     

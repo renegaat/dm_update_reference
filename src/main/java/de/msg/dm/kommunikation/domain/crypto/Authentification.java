@@ -3,7 +3,6 @@ package de.msg.dm.kommunikation.domain.crypto;
 import io.vertx.codegen.annotations.DataObject;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
-import lombok.Data;
 
 @DataObject(generateConverter = false)
 public class Authentification {
